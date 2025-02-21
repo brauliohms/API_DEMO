@@ -1,0 +1,13 @@
+services:
+  postgres_ibge:
+    image: postgres:17-bookworm
+    restart: always
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: app
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./database-ibge/create_ibge.sql:/docker-entrypoint-initdb.d/create_ibge.sql
