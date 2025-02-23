@@ -2,7 +2,13 @@ from django.http import HttpRequest
 from ninja import Router
 
 from ibge.models import Cidade, Uf
-from ibge.schemas import CidadeCollectionSchema, CidadeSchema, UfSchema
+from ibge.schemas import (
+    CidadeCollectionSchema,
+    CidadeSchema,
+    MsgSchema,
+    UfSchema,
+    UserInShema,
+)
 
 uf_router = Router()
 cidade_router = Router()
@@ -37,3 +43,11 @@ def find_city_by_id(request, id: int):
     else:
         print("Não é São Paulo")
     return city.nome
+
+
+@cidade_router.post("/", response={201: MsgSchema}, tags=["USUARIO"])
+def create_user(request, payload: UserInShema):
+    print(payload)
+    print(payload.nome)
+    print(payload.cidades)
+    return 201, {"message": "Usuário criado com sucesso!"}

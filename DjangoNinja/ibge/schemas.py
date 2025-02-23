@@ -19,3 +19,14 @@ class CidadeSchema(CidadeCollectionSchema):
     sigla_uf: str
     codigo_uf: int
     nome_uf: str
+
+
+class UserInShema(Schema):
+    cidades: str
+    email: str
+    estados: str
+    nome: str
+
+
+class MsgSchema(Schema):
+    message: str
